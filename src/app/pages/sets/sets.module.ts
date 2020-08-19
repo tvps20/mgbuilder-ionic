@@ -7,9 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { SetsPageRoutingModule } from './sets-routing.module';
 
 import { SetsPage } from './sets.page';
-import { SetsListComponent } from './../../shared/components/sets-list/sets-list.component';
-import { LoadErrorComponent } from './../../shared/components/load-error/load-error.component';
-import { AlertInfoComponent } from './../../shared/components/alert-info/alert-info.component';
+import { SetsListComponent } from './sets-list/sets-list.component';
+import { SharedImportsModule } from './../../shared/imports/shared-imports.module';
 
 
 @NgModule({
@@ -17,13 +16,12 @@ import { AlertInfoComponent } from './../../shared/components/alert-info/alert-i
     CommonModule,
     FormsModule,
     IonicModule,
-    SetsPageRoutingModule
+    SetsPageRoutingModule,
+    SharedImportsModule
   ],
   declarations: [
     SetsPage,
-    SetsListComponent,
-    LoadErrorComponent,
-    AlertInfoComponent
+    SetsListComponent
   ]
 })
 export class SetsPageModule {}

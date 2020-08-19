@@ -1,8 +1,8 @@
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit, Input } from '@angular/core';
 
-import { SetDTO } from './../../models/set.dto';
-import { UtilService } from './../../services/util.service';
+import { SetDTO } from '../../../shared/models/set.dto';
+import { UtilService } from '../../../shared/services/util.service';
 
 @Component({
   selector: 'app-sets-list',

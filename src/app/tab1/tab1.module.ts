@@ -7,22 +7,20 @@ import { Tab1Page } from './tab1.page';
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { HomeNavComponent } from './home-nav/home-nav.component';
 import { DecksListComponent } from './decks-list/decks-list.component';
-import { AlertInfoComponent } from './../shared/components/alert-info/alert-info.component';
-import { LoadErrorComponent } from './../shared/components/load-error/load-error.component';
+import { SharedImportsModule } from './../shared/imports/shared-imports.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    SharedImportsModule
   ],
   declarations: [
     Tab1Page,
     HomeNavComponent,
-    DecksListComponent,
-    LoadErrorComponent,
-    AlertInfoComponent
+    DecksListComponent
   ]
 })
 export class Tab1PageModule {}
