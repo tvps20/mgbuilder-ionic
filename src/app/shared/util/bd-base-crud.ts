@@ -1,5 +1,6 @@
 import { switchMap, mapTo } from 'rxjs/operators';
 import { Observable, of, from } from 'rxjs';
+import { Storage } from '@ionic/storage';
 
 export abstract class BdBaseCrudService<T> {
 

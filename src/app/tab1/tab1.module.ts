@@ -6,6 +6,7 @@ import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { HomeNavComponent } from './home-nav/home-nav.component';
+import { DecksListComponent } from './decks-list/decks-list.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { HomeNavComponent } from './home-nav/home-nav.component';
   ],
   declarations: [
     Tab1Page,
-    HomeNavComponent
+    HomeNavComponent,
+    DecksListComponent
   ]
 })
 export class Tab1PageModule {}
