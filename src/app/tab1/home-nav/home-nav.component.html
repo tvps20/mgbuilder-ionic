@@ -31,5 +31,34 @@
         </ion-card>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-segment scrollable *ngIf="setsTop10$ | async as sets; else loadingTop10Sets">
+          <ion-segment-button card *ngFor="let set of sets">
+            <ion-card-content>
+              <i [class]="setIconClass(set)"></i>
+              <p>{{set.name}}</p>
+            </ion-card-content>
+          </ion-segment-button>
+        </ion-segment>
+
+        <ng-template #loadingTop10Sets>
+          <ion-card *ngIf="errorSets$ | async; else loadingNoError" color="danger">
+            <ion-card-content class="card-center">
+              <p>Error loading sets!!!</p>
+            </ion-card-content>
+          </ion-card>
+          <ng-template #loadingNoError>
+            <ion-card color="medium">
+              <ion-card-content class="card-center">
+                <ion-spinner name="lines" color="light"></ion-spinner>
+                <p>Loading latest editions...</p>
+              </ion-card-content>
+            </ion-card>
+          </ng-template>
+        </ng-template>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </div>
