@@ -1,6 +1,7 @@
-import { Subject, empty, Observable } from 'rxjs';
+import { CacheService } from './../shared/services/cache.service';
+import { Subject, empty, Observable, of } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { SetDTO } from './../shared/models/set.dto';
 import { DeckDTO } from './../shared/models/deck.dto';
@@ -23,10 +24,11 @@ export class Tab1Page implements OnInit {
   public decksError$ = new Subject<boolean>();
 
   constructor(private setService: SetService,
+    private cacheService: CacheService,
     private deckService: DeckService) { }
 
   ngOnInit(): void {
-    this.setsTop10$ = this.loadSets();
+    this.setsTop10$ = this.loadTop10Sets();
     this.decks$ = this.loadDecks();
   }
 
@@ -42,13 +44,19 @@ export class Tab1Page implements OnInit {
     }
   }
 
-  private loadSets() {
-    return this.setService.findTop10().pipe(
-      catchError(error => {
-        this.setsError$.next(true);
-        return empty();
-      })
-    );
+  private loadTop10Sets() {
+    if(this.cacheService.setsApi.length > 0){
+      return of(this.cacheService.setsApi).pipe(
+        map(sets => sets.slice(0, 10))
+      );
+    } else {
+      return this.setService.findTop10().pipe(
+        catchError(error => {
+          this.setsError$.next(true);
+          return empty();
+        })
+      );
+    }
   }
 
   private loadDecks() {
