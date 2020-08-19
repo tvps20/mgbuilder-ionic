@@ -2,7 +2,8 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-card color="tertiary" class="ion-activatable ripple-parent">
+        <ion-card color="tertiary" class="ion-activatable ripple-parent"
+          [routerLink]="(errorSets$ | async) ? '' : ['/sets']">
           <ion-card-content>
             <ion-icon name="grid-outline" id="icone-nav"></ion-icon>
             <p>Sets</p>
@@ -49,7 +50,7 @@
               <p>Error loading sets!!!</p>
             </ion-card-content>
           </ion-card>
-          
+
           <ng-template #loadingNoError>
             <ion-card color="medium">
               <ion-card-content class="card-center">

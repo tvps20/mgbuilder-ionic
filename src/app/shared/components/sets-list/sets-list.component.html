@@ -1,0 +1,35 @@
+<div>
+  <div *ngIf="sets$ | async as sets; else loadingSets">
+    <div *ngIf="sets.length > 0; else noSetsFound">
+      <ion-list *ngIf="sets.length > 0; else noFoundSets">
+        <ion-card *ngFor="let set of sets" [style]="styleBorderSet(set)">
+          <ion-item class="item-background-color" (click)="goToSetDetail(set)">
+            <ion-label class="ion-activatable ripple-parent">
+              <h2>{{ set.name }}</h2>
+              <h4>Code: {{ set.code }}</h4>
+              <p>Realease in {{ set.releaseDate }}</p>
+              <ion-ripple-effect></ion-ripple-effect>
+            </ion-label>
+    
+            <i [class]="setIconClass(set)"></i>
+          </ion-item>
+        </ion-card>
+      </ion-list>
+  
+      <ng-template #loadingSets>
+        <div class="container-info">
+          <img class="circle" src="../../../../assets/img/img-info.png" />
+          <p class="subtitle">{{ msgInfo }}</p>
+        </div>
+      </ng-template>
+    </div>
+
+    <ng-template #noSetsFound>
+      <app-alert-info msgInfo="No sets found."></app-alert-info>
+    </ng-template>
+  </div>
+
+  <ng-template #loadingSets>
+    <app-load-error msgLoad="Loading sets..." msgError="Error loading sets!!!" [error$]="setsError$"></app-load-error>
+  </ng-template>
+</div>

@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Sets</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar color="primary">
+    <form>
+      <ion-searchbar></ion-searchbar>
+    </form>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-sets-list [sets$]="sets$" [setsError$]="setsError$"></app-sets-list>
+</ion-content>

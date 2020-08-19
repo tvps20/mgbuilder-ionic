@@ -1,6 +1,6 @@
 import { Subject, empty, Observable } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import { SetDTO } from './../shared/models/set.dto';
 import { DeckDTO } from './../shared/models/deck.dto';

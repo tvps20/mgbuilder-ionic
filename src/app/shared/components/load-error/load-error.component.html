@@ -1,0 +1,13 @@
+<div *ngIf="error$ | async; else loadingNoError">
+  <div class="container-info">
+    <img class="circle" src="../../../assets/img/img-error.png" />
+    <p class="subtitle-error">{{ msgError }}</p>
+  </div>
+</div>
+
+<ng-template #loadingNoError>
+  <div class="container-info">
+    <ion-spinner name="lines" ></ion-spinner>
+    <p>{{ msgLoad }}</p>
+  </div>
+</ng-template>

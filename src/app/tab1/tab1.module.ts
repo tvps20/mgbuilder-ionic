@@ -7,6 +7,8 @@ import { Tab1Page } from './tab1.page';
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { HomeNavComponent } from './home-nav/home-nav.component';
 import { DecksListComponent } from './decks-list/decks-list.component';
+import { AlertInfoComponent } from './../shared/components/alert-info/alert-info.component';
+import { LoadErrorComponent } from './../shared/components/load-error/load-error.component';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import { DecksListComponent } from './decks-list/decks-list.component';
   declarations: [
     Tab1Page,
     HomeNavComponent,
-    DecksListComponent
+    DecksListComponent,
+    LoadErrorComponent,
+    AlertInfoComponent
   ]
 })
 export class Tab1PageModule {}
