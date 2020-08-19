@@ -1,11 +1,12 @@
 import { Subject, empty, Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 
 import { SetDTO } from './../shared/models/set.dto';
 import { DeckDTO } from './../shared/models/deck.dto';
 import { SetService } from './../shared/services/domain/set.service';
 import { DeckService } from './../shared/services/domain/deck.service';
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -14,6 +15,8 @@ import { DeckService } from './../shared/services/domain/deck.service';
 })
 export class Tab1Page implements OnInit {
 
+  @ViewChild(IonContent, { static: false }) content: IonContent;
+  public topButtonEnable = false;
   public setsTop10$: Observable<SetDTO[]>;
   public setsError$ = new Subject<boolean>();
   public decks$: Observable<DeckDTO[]>;
@@ -25,6 +28,18 @@ export class Tab1Page implements OnInit {
   ngOnInit(): void {
     this.setsTop10$ = this.loadSets();
     this.decks$ = this.loadDecks();
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop(300);
+  }
+
+  logScrolling(event: CustomEvent) {
+    if (event.detail.scrollTop > 250) {
+      this.topButtonEnable = true;
+    } else {
+      this.topButtonEnable = false;
+    }
   }
 
   private loadSets() {
