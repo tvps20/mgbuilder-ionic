@@ -1,6 +1,6 @@
 import { IonContent } from '@ionic/angular';
 import { PageService } from './../../shared/services/page.service';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, Subject, empty } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -17,8 +17,10 @@ export class SetsPage implements OnInit {
 
   @ViewChild(IonContent, { static: false }) content: IonContent;
   public topButtonEnable = false;
-  public sets$: Observable<SetDTO[]>;
   public setsError$ = new Subject<boolean>();
+  public sets$: Observable<SetDTO[]>;
+  private localSets: SetDTO [] = [];
+  private setsFullLenght: number = 0;
   private page: number = 1;
   private pageSize: number = 24;
 
@@ -27,11 +29,26 @@ export class SetsPage implements OnInit {
     private setService: SetService) { }
 
   ngOnInit() {
-    this.sets$ = this.loadInitSets();
+    this.sets$ = this.loadSets();
   }
 
   scrollToTop() {
     this.content.scrollToTop(300);
+  }
+
+  doRefresh(event){
+    this.sets$ = this.setService.findAll().pipe(
+      map(sets => sets.slice(0, this.pageSize)),
+      tap(sets => {
+        this.localSets = sets;
+        this.setsFullLenght = this.cacheService.setsApiFullLength;
+        event.target.complete();
+      }),
+      catchError(error => {
+        this.setsError$.next(true);
+        return empty();
+      })
+    );
   }
 
   logScrolling(event: CustomEvent) {
@@ -42,14 +59,30 @@ export class SetsPage implements OnInit {
     }
   }
 
-  loadData(){
-
+  loadData(event){
+    this.page++;
+    
+    this.sets$ = of(this.localSets).pipe(
+      map(sets => {
+        let setsPaginado = this.pageService.paginate(this.cacheService.setsApi, this.pageSize, this.page);
+        return sets.concat(setsPaginado);
+      }),
+      tap(sets => {
+        this.localSets = sets;
+        event.target.complete();
+        if (sets.length >= this.setsFullLenght) { event.target.disabled = true; }
+      })
+    );
   }
 
-  private loadInitSets() {
+  private loadSets() {
     let setsCache = this.cacheService.setsApi;
     const findAllSets = () => this.setService.findAll().pipe(
       map(sets => sets.slice(0, this.pageSize)),
+      tap(sets => {
+        this.localSets = sets;
+        this.setsFullLenght = this.cacheService.setsApiFullLength
+      }),
       catchError(error => {
         this.setsError$.next(true);
         return empty();
@@ -58,6 +91,10 @@ export class SetsPage implements OnInit {
 
     return setsCache.length < 1 ? findAllSets() : of(setsCache).pipe(
       map(sets => sets.slice(0, this.pageSize)),
+      tap(sets => {
+        this.localSets = sets;
+        this.setsFullLenght = this.cacheService.setsApiFullLength;
+      }),
     );
   }
 }
