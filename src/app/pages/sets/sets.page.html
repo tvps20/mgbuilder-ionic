@@ -8,8 +8,8 @@
   </ion-toolbar>
 
   <ion-toolbar color="primary">
-    <form>
-      <ion-searchbar></ion-searchbar>
+    <form [formGroup]="formulario">
+      <ion-searchbar formControlName="search"></ion-searchbar>
     </form>
   </ion-toolbar>
 </ion-header>
