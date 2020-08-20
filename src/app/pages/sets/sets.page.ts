@@ -22,7 +22,7 @@ export class SetsPage implements OnInit, OnDestroy {
   public subscription$: Subscription;
   public setsError$ = new Subject<boolean>();
   public sets$: Observable<SetDTO[]>;
-  private localSets: SetDTO [] = [];
+  private localSets: SetDTO[] = [];
   private setsFullLenght: number = 0;
   private page: number = 1;
   private pageSize: number = 24;
@@ -46,7 +46,7 @@ export class SetsPage implements OnInit, OnDestroy {
     this.content.scrollToTop(300);
   }
 
-  doRefresh(event){
+  doRefresh(event) {
     this.sets$ = this.setService.findAll().pipe(
       map(sets => sets.slice(0, this.pageSize)),
       tap(sets => {
@@ -69,9 +69,9 @@ export class SetsPage implements OnInit, OnDestroy {
     }
   }
 
-  loadData(event){
+  loadData(event) {
     this.page++;
-    
+
     this.sets$ = of(this.localSets).pipe(
       map(sets => {
         let setsPaginado = this.pageService.paginate(this.cacheService.setsApi, this.pageSize, this.page);
@@ -98,6 +98,7 @@ export class SetsPage implements OnInit, OnDestroy {
       tap(sets => {
         this.localSets = sets;
         this.setsFullLenght = this.cacheService.setsApiFullLength
+        this.pageService.presentToast(`${this.setsFullLenght} sets found.`);
       }),
       catchError(error => {
         this.setsError$.next(true);
@@ -110,6 +111,7 @@ export class SetsPage implements OnInit, OnDestroy {
       tap(sets => {
         this.localSets = sets;
         this.setsFullLenght = this.cacheService.setsApiFullLength;
+        this.pageService.presentToast(`${this.setsFullLenght} sets found.`);
       }),
     );
   }
@@ -121,7 +123,7 @@ export class SetsPage implements OnInit, OnDestroy {
       debounceTime(200),
       distinctUntilChanged(),
       switchMap(value => this.searchSets(value))
-    ).subscribe( success => this.sets$ = of(success));
+    ).subscribe(success => this.sets$ = of(success));
   }
 
   private searchSets(value: string) {

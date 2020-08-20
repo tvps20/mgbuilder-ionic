@@ -14,12 +14,13 @@ export class PageService {
         return array.slice((page_index - 1) * page_size, page_index * page_size);
     }
 
-    public async presentToast(msg: string, color: string = 'dark') {
+    public async presentToast(msg: string, color: string = 'dark', icon = 'information-circle-outline') {
         const toast = await this.toastController.create({
             message: msg,
-            duration: 1000,
+            duration: 2000,
             color: color,
-            cssClass: 'custom-toast'
+            cssClass: 'custom-toast',
+            buttons: [{ icon: icon }]
         });
         toast.present();
     }
