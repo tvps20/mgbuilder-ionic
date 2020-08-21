@@ -11,13 +11,12 @@ export class CacheService {
     private collectionsApi: CollectionDTO[] = [];
     public setsApi: SetDTO[] = [];
     public setsApiFullLength: number = 0;
-    
+
     public selectedSet: SetDTO;
-    public selectedSetLengthCards: number = 0;
+    public selectedLengthSet: number = 0;
     public selectedCollection: CollectionDTO;
 
     public findCollectionApiByCode(code: string) {
-        console.log(this.collectionsApi)
         let collection = this.collectionsApi.filter(x => x.set.code === code);
         if (collection.length > 0) {
             return collection[0];
@@ -27,14 +26,10 @@ export class CacheService {
     }
 
     public saveCollectionApi(collection: CollectionDTO) {
-        if(!collection.set){
-            collection.set = {code: 'defaul', name: 'defaul', block: null, booster: [], onlineOnly: null, releaseDate: new Date(), type: null }
-        }
-        
         return this.collectionsApi.push(collection);
     }
 
-    public updateCollectionApi(code: string, collection: CollectionDTO){
+    public updateCollectionApi(code: string, collection: CollectionDTO) {
         let collectionSave = this.findCollectionApiByCode(code);
 
         if (collectionSave) {

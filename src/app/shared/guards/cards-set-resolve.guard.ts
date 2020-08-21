@@ -1,4 +1,5 @@
-import { tap, catchError, switchMap, map } from 'rxjs/operators';
+import { SetDTO } from './../models/set.dto';
+import { tap, catchError, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve, Router } from '@angular/router';
 import { Observable, empty, of } from 'rxjs';
@@ -17,22 +18,23 @@ export class CardsSetResolveGuard implements Resolve<CardDTO[]> {
   constructor(private cardService: CardService,
     private cacheService: CacheService,
     private router: Router,
-    private pageService: PageService){}
+    private pageService: PageService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<CardDTO[]> {
     const code = route.params['code'];
+    const setDefaul: SetDTO = { code: code, name: code, block: code, booster: [], releaseDate: new Date(), type: code, onlineOnly: false }
     const findBySet = (param) => this.cardService.findAllBySet(param).pipe(
       tap(cards => {
         let collection: CollectionDTO = {
-          set: this.cacheService.selectedSet, 
-          cards: cards, 
-          qtdTotalCards: this.cacheService.selectedSetLengthCards
+          set: this.cacheService.selectedSet || setDefaul,
+          cards: cards,
+          qtdTotalCards: this.cacheService.selectedLengthSet
         };
         this.cacheService.saveCollectionApi(collection);
         this.cacheService.selectedCollection = collection;
       }),
       catchError(error => {
-       this.router.navigate(['/sets']);
+        this.router.navigate(['/sets']);
         return empty();
       })
     );
