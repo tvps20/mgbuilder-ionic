@@ -7,8 +7,22 @@ import { CardsSetResolveGuard } from './../../shared/guards/cards-set-resolve.gu
 const routes: Routes = [
   {
     path: '',
-    component: SetDetailPage,
-    resolve: { cards: CardsSetResolveGuard }
+    children: [
+      {
+        path: 'cards',
+        children: [
+          {
+            path: '',
+            component: SetDetailPage,
+            resolve: { cards: CardsSetResolveGuard }
+          },
+          {
+            path: ':id',
+            loadChildren: () => import('../../pages/card-detail/card-detail.module').then(m => m.CardDetailPageModule)
+          }
+        ]
+      }
+    ]
   }
 ];
 
@@ -16,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SetDetailPageRoutingModule {}
+export class SetDetailPageRoutingModule { }

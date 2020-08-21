@@ -28,6 +28,6 @@ export class HomeNavComponent implements OnInit {
 
   goToSetDetail(set: SetDTO){
     this.cacheService.selectedSet = set;
-    this.router.navigate([`./sets/${set.code}`]);
+    this.router.navigate([`./sets/${set.code}/cards`]);
   }
 }

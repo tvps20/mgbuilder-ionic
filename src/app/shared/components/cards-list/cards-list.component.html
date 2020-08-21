@@ -2,7 +2,7 @@
   <div *ngIf="cardsList$ | async as cards; else loadingCards">
     <div *ngIf="cards.length > 0; else noCardsFound">
       <ion-list>
-        <ion-card *ngFor="let card of cards" [style]="styleBorderCard(card)">
+        <ion-card *ngFor="let card of cards; let i = index" [style]="styleBorderCard(card)" (click)="goToCardDetail(card, i)">
           <ion-item class="item-background-color">
             <ion-label class="ion-activatable ripple-parent">
               <h2>{{ card.name }}</h2>
