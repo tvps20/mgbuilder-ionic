@@ -1,0 +1,42 @@
+.card-background-page {
+  @media (max-width: 1400px) {
+    ion-card {
+      position: relative;
+      text-align: center;
+      height: 250px;
+
+      img {
+        margin-bottom: -5px;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    ion-card {
+      position: relative;
+      text-align: center;
+      height: 150px;
+
+      img {
+        margin-bottom: -5px;
+      }
+    }
+  }
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2em;
+    width: 100%;
+    font-weight: bold;
+    color: white;
+  }
+
+  .card-subtitle {
+    font-size: 1em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: white;
+  }
+}

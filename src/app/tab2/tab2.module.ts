@@ -1,3 +1,4 @@
+import { ToolsContainerComponent } from './tools-container/tools-container.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,9 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     ExploreContainerComponentModule,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page]
+  declarations: [
+    Tab2Page,
+    ToolsContainerComponent
+  ]
 })
 export class Tab2PageModule {}

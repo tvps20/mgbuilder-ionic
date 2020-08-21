@@ -1,0 +1,8 @@
+<div class="card-background-page">
+  <ion-card *ngFor="let tool of tools" class="ion-activatable ripple-parent">
+    <img [src]="tool.img" />
+    <div class="card-title">{{ tool.name }}</div>
+    <div class="card-subtitle">{{ tool.msg }}</div>
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-card>
+</div>
