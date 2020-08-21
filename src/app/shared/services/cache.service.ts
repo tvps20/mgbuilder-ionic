@@ -13,7 +13,7 @@ export class CacheService {
     public setsApiFullLength: number = 0;
 
     public selectedSet: SetDTO;
-    public selectedLengthSet: number = 0;
+    public selectedLengthSetCards: number = 0;
     public selectedCollection: CollectionDTO;
 
     public findCollectionApiByCode(code: string) {

@@ -28,7 +28,7 @@ export class CardsSetResolveGuard implements Resolve<CardDTO[]> {
         let collection: CollectionDTO = {
           set: this.cacheService.selectedSet || setDefaul,
           cards: cards,
-          qtdTotalCards: this.cacheService.selectedLengthSet
+          qtdTotalCards: this.cacheService.selectedLengthSetCards
         };
         this.cacheService.saveCollectionApi(collection);
         this.cacheService.selectedCollection = collection;
