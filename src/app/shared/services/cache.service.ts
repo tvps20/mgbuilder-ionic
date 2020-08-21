@@ -28,17 +28,4 @@ export class CacheService {
     public saveCollectionApi(collection: CollectionDTO) {
         return this.collectionsApi.push(collection);
     }
-
-    public updateCollectionApi(code: string, collection: CollectionDTO) {
-        let collectionSave = this.findCollectionApiByCode(code);
-
-        if (collectionSave) {
-            return this.updateData(collection, collectionSave);
-        }
-    }
-
-    private updateData(newObj: CollectionDTO, obj: CollectionDTO) {
-        obj.cards = newObj.cards.length > obj.cards.length ? newObj.cards : obj.cards;
-        obj.qtdTotalCards = newObj.qtdTotalCards > obj.qtdTotalCards ? newObj.qtdTotalCards : obj.qtdTotalCards;
-    }
 }

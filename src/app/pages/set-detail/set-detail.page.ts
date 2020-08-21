@@ -13,15 +13,16 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './set-detail.page.html',
   styleUrls: ['./set-detail.page.scss'],
 })
-export class SetDetailPage implements OnInit,  OnDestroy {
+export class SetDetailPage implements OnInit, OnDestroy {
 
   @ViewChild(IonContent, { static: false }) content: IonContent;
   public setTitle: string = "Set Detail"
   public topButtonEnable = false;
   public formulario: FormGroup;
   public cardsFullLength: number = 0;
-  private subscriptions$: Subscription[] = [];
   public cards$: Observable<CardDTO[]>;
+  private subscriptions$: Subscription[] = [];
+  private code: string;
   private localCards: CardDTO[] = [];
   private page: number = 1;
 
@@ -33,8 +34,10 @@ export class SetDetailPage implements OnInit,  OnDestroy {
   ngOnInit() {
     this.getTitle();
     this.localCards = this.route.snapshot.data['cards'];
+    this.code = this.route.snapshot.params['code'];
     this.cardsFullLength = this.cacheService.selectedLengthSetCards;
     this.cards$ = of(this.localCards);
+    this.pageService.presentToast(`${this.cardsFullLength} cards found.`);
   }
 
   ngOnDestroy(): void {
@@ -53,16 +56,34 @@ export class SetDetailPage implements OnInit,  OnDestroy {
     }
   }
 
+  doRefresh(event) {
+    const inscription = this.cardService.findAllBySet(this.code, 1).subscribe(
+      success => {
+        event.target.complete();
+        if (this.localCards.length < this.cardsFullLength) { 
+          this.page = 1;
+          this.localCards = success;
+          this.cards$ = of(this.localCards);
+        }
+      },
+      error => {
+        this.pageService.presentToast("Error getting cards!!!", 'danger');
+        event.target.complete();
+      }
+    );
+
+    this.subscriptions$.push(inscription);
+  }
+
   loadData(event) {
     this.page++;
-    const code = this.route.snapshot.params['code'];
-    const subscription = this.cardService.findAllBySet(code, this.page).pipe().subscribe(
+    const inscription = this.cardService.findAllBySet(this.code, this.page).subscribe(
       success => {
         event.target.complete();
         this.localCards = this.localCards.concat(success);
-        if (this.localCards.length >= this.cardsFullLength) { event.target.disabled = true; }
         this.cards$ = of(this.localCards);
         this.cacheService.selectedCollection.cards = this.localCards;
+        if (this.localCards.length >= this.cardsFullLength) { event.target.disabled = true; }
       },
       error => {
         this.pageService.presentToast("Error getting cards!!!", 'danger');
@@ -71,7 +92,7 @@ export class SetDetailPage implements OnInit,  OnDestroy {
       }
     );
 
-    this.subscriptions$.push(subscription);
+    this.subscriptions$.push(inscription);
   }
 
   private getTitle() {

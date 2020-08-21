@@ -51,6 +51,7 @@ export class SetsPage implements OnInit, OnDestroy {
       map(sets => sets.slice(0, this.pageSize)),
       tap(sets => {
         this.localSets = sets;
+        this.page = 1;
         this.setsFullLenght = this.cacheService.setsApiFullLength;
         event.target.complete();
       }),
