@@ -1,7 +1,7 @@
-import { CollectionDTO } from './../models/collection.dto';
 import { Injectable } from '@angular/core';
 
 import { SetDTO } from './../models/set.dto';
+import { CollectionDTO } from './../models/collection.dto';
 
 @Injectable({
     providedIn: 'root'
