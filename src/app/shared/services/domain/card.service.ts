@@ -26,7 +26,7 @@ export class CardService extends ApiBaseCrudService<CardDTO> {
 
     public findAllBySet(code: string, page: number = 1, pageSize: number = 24): Observable<CardDTO[]> {
         return this.http.get<any[]>(`${API_CONFIG.baseUrl}/cards?page=${page}&pageSize=${pageSize}&set=${code}`, { observe: 'response' }).pipe(
-            tap((res) => this.cacheService.cardsApiSetLength = Number.parseInt(res.headers.get('total-count'))),
+            tap((res) => this.cacheService.selectedSetLengthCards = Number.parseInt(res.headers.get('total-count'))),
             map((res: any) => res.body),
             map((dados: any) => dados.cards)
         );

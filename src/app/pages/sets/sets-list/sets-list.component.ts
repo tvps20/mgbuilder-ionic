@@ -13,7 +13,7 @@ import { UtilService } from '../../../shared/services/util.service';
 })
 export class SetsListComponent implements OnInit {
 
-  @Input() sets$: Observable<SetDTO[]>;
+  @Input() setsList$: Observable<SetDTO[]>;
   @Input() setsError$ = new Subject<boolean>();
 
   constructor(private utilService: UtilService,

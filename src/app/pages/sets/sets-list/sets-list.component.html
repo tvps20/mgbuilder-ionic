@@ -1,7 +1,7 @@
 <div>
-  <div *ngIf="sets$ | async as sets; else loadingSets">
+  <div *ngIf="setsList$ | async as sets; else loadingSets">
     <div *ngIf="sets.length > 0; else noSetsFound">
-      <ion-list *ngIf="sets.length > 0; else noFoundSets">
+      <ion-list>
         <ion-card *ngFor="let set of sets" [style]="styleBorderSet(set)">
           <ion-item class="item-background-color" (click)="goToSetDetail(set)">
             <ion-label class="ion-activatable ripple-parent">
@@ -15,13 +15,6 @@
           </ion-item>
         </ion-card>
       </ion-list>
-  
-      <ng-template #loadingSets>
-        <div class="container-info">
-          <img class="circle" src="../../../../assets/img/img-info.png" />
-          <p class="subtitle">{{ msgInfo }}</p>
-        </div>
-      </ng-template>
     </div>
 
     <ng-template #noSetsFound>

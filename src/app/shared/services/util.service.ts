@@ -13,6 +13,19 @@ export class UtilService {
         return `ss ss-${code} ss-uncommon ss-2x`;
     }
 
+    public makeManaCost(manaCost: string) {
+        let manas: string[] = [];
+        if (manaCost) {
+            manaCost.split('{').forEach(x => {
+                if (x !== '') {
+                    manas.push(x.substring(0, 1).toLowerCase());
+                }
+            })
+        }
+
+        return manas;
+    }
+
     public cardBorderStyle(card: CardDTO = null) {
         let color = this.choseColor(ColorType.INCOLOR);
 

@@ -1,13 +1,15 @@
-import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { ToastController } from '@ionic/angular';
+import { map, switchMap } from 'rxjs/operators';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
+import { from } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PageService {
 
-    constructor(public toastController: ToastController) { }
+    constructor(public toastController: ToastController,
+        public loadingController: LoadingController) { }
 
     public paginate(array: any[], page_size, page_index): any[] {
         // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
@@ -23,5 +25,14 @@ export class PageService {
             buttons: [{ icon: icon }]
         });
         toast.present();
+    }
+
+    public presentLoading(msg = "Please wait...") {
+        return from(this.loadingController.create({
+            message: msg,
+        })).pipe(switchMap((loading) =>
+            from(loading.present())
+                .pipe(map(() => loading))
+        ));
     }
 }

@@ -7,14 +7,20 @@ import { IonicModule } from '@ionic/angular';
 import { SetDetailPageRoutingModule } from './set-detail-routing.module';
 
 import { SetDetailPage } from './set-detail.page';
+import { SharedImportsModule } from './../../shared/imports/shared-imports.module';
+import { CardsListComponent } from './../../shared/components/cards-list/cards-list.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SetDetailPageRoutingModule
+    SetDetailPageRoutingModule,
+    SharedImportsModule
   ],
-  declarations: [SetDetailPage]
+  declarations: [
+    SetDetailPage,
+    CardsListComponent
+  ]
 })
 export class SetDetailPageModule {}

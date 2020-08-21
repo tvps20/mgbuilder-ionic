@@ -19,7 +19,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <app-sets-list [sets$]="sets$" [setsError$]="setsError$"></app-sets-list>
+  <app-sets-list [setsList$]="sets$" [setsError$]="setsError$"></app-sets-list>
 
   <ion-fab *ngIf="topButtonEnable" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="scrollToTop()">
