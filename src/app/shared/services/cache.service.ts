@@ -10,4 +10,6 @@ export class CacheService {
     public setsApi: SetDTO[] = [];
     public setsApiFullLength: number = 0;
     public cardsApiSetLength: number = 0;
+
+    public selectedSet: SetDTO;
 }

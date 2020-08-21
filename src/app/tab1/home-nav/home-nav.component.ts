@@ -1,3 +1,5 @@
+import { CacheService } from './../../shared/services/cache.service';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -14,11 +16,18 @@ export class HomeNavComponent implements OnInit {
   @Input() setsTop10$: Observable<SetDTO[]>;
   @Input() setsError$ = new Subject<boolean>();
 
-  constructor(private utilService: UtilService) { }
+  constructor(private utilService: UtilService,
+    private cacheService: CacheService,
+    private router: Router) { }
 
   ngOnInit() {}
 
   setIconClass(set: SetDTO){
     return this.utilService.setIconClass(set.code);
+  }
+
+  goToSetDetail(set: SetDTO){
+    this.cacheService.selectedSet = set;
+    this.router.navigate([`./sets/${set.code}`]);
   }
 }

@@ -1,3 +1,5 @@
+import { CacheService } from './../../../shared/services/cache.service';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -14,7 +16,9 @@ export class SetsListComponent implements OnInit {
   @Input() sets$: Observable<SetDTO[]>;
   @Input() setsError$ = new Subject<boolean>();
 
-  constructor(private utilService: UtilService) { }
+  constructor(private utilService: UtilService,
+    private cacheService: CacheService,
+    private router: Router) { }
 
   ngOnInit() { }
 
@@ -23,7 +27,8 @@ export class SetsListComponent implements OnInit {
   }
 
   goToSetDetail(set: SetDTO) {
-    console.log('go to detail')
+    this.cacheService.selectedSet = set;
+    this.router.navigate([`./sets/${set.code}`]);
   }
 
   setIconClass(set: SetDTO) {

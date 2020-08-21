@@ -6,7 +6,16 @@ import { SetsPage } from './sets.page';
 const routes: Routes = [
   {
     path: '',
-    component: SetsPage
+    children: [
+      {
+        path: '',
+        component: SetsPage
+      },
+      {
+        path: ':code',
+        loadChildren: () => import('../../pages/set-detail/set-detail.module').then(m => m.SetDetailPageModule)
+      }
+    ]
   }
 ];
 
@@ -14,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SetsPageRoutingModule {}
+export class SetsPageRoutingModule { }
