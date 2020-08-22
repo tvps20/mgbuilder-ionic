@@ -4,7 +4,7 @@ import { PopoverController } from '@ionic/angular';
 import { CardDTO } from './../../shared/models/card.dto';
 import { CacheService } from './../../shared/services/cache.service';
 import { CollectionDTO } from './../../shared/models/collection.dto';
-import { PopoverCardComponent } from './../../shared/components/popover-card/popover-card.component';
+import { PopoverCardComponent } from './popover-card/popover-card.component';
 
 @Component({
   selector: 'app-card-detail',

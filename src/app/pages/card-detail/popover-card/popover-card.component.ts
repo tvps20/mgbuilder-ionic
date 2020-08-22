@@ -1,13 +1,13 @@
-import { FavoriteListService } from './../../services/favorite-list.service';
-import { FavoriteCardsPage } from './../../../pages/favorite-cards/favorite-cards.page';
+import { FavoriteListService } from '../../../shared/services/favorite-list.service';
+import { FavoriteCardsPage } from '../../favorite-cards/favorite-cards.page';
 import { Observable, Subscription } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
-import { CardDTO } from './../../models/card.dto';
-import { DeckDTO } from './../../models/deck.dto';
-import { DeckService } from './../../services/domain/deck.service';
-import { CardRefService } from './../../services/domain/card-ref.service';
+import { CardDTO } from '../../../shared/models/card.dto';
+import { DeckDTO } from '../../../shared/models/deck.dto';
+import { DeckService } from '../../../shared/services/domain/deck.service';
+import { CardRefService } from '../../../shared/services/domain/card-ref.service';
 
 @Component({
   selector: 'app-popover-card',

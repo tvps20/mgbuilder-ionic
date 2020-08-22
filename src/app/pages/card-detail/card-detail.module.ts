@@ -10,7 +10,7 @@ import { CardDetailPage } from './card-detail.page';
 
 import { CardsDetailComponent } from './../../shared/components/cards-detail/cards-detail.component';
 import { SharedImportsModule } from './../../shared/imports/shared-imports.module';
-import { PopoverCardComponent } from './../../shared/components/popover-card/popover-card.component';
+import { PopoverCardComponent } from './popover-card/popover-card.component';
 
 @NgModule({
   imports: [
