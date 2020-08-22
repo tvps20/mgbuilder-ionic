@@ -1,3 +1,5 @@
+import { CardRefDTO } from './../../shared/models/card-ref.dto';
+import { CardRefService } from './../../shared/services/domain/card-ref.service';
 import { FormGroup } from '@angular/forms';
 import { IonContent } from '@ionic/angular';
 import { Observable, of, Subscription } from 'rxjs';
@@ -21,6 +23,7 @@ export class SetDetailPage implements OnInit, OnDestroy {
   public topButtonEnable = false;
   public formulario: FormGroup;
   public cardsFullLength: number = 0;
+  public cardsRef: CardRefDTO[] = [];
   public cards$: Observable<CardDTO[]>;
   private subscriptions$: Subscription[] = [];
   private code: string;
@@ -29,6 +32,7 @@ export class SetDetailPage implements OnInit, OnDestroy {
 
   constructor(private cacheService: CacheService,
     private pageService: PageService,
+    private cardRefService: CardRefService,
     private cardService: CardService,
     private route: ActivatedRoute) { }
 
@@ -39,10 +43,15 @@ export class SetDetailPage implements OnInit, OnDestroy {
     this.cardsFullLength = this.cacheService.selectedLengthSetCards;
     this.cards$ = of(this.localCards);
     this.pageService.presentToast(`${this.cardsFullLength} cards found.`);
+    this.subscriptions$.push(this.loadCardsRef());
   }
 
   ngOnDestroy(): void {
     this.subscriptions$.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  ionViewWillEnter(event) {
+    this.subscriptions$.push(this.loadCardsRef());
   }
 
   scrollToTop() {
@@ -94,6 +103,12 @@ export class SetDetailPage implements OnInit, OnDestroy {
     );
 
     this.subscriptions$.push(inscription);
+  }
+
+  private loadCardsRef() {
+    return this.cardRefService.findAll().subscribe(
+      success => this.cardsRef = success
+    );
   }
 
   private getTitle() {

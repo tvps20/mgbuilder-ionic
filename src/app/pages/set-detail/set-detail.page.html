@@ -19,7 +19,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   
-  <app-cards-list [cardsList$]="cards$"></app-cards-list>
+  <app-cards-list [cardsList$]="cards$" [cardsRef]="cardsRef"></app-cards-list>
 
   <ion-fab *ngIf="topButtonEnable" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="scrollToTop()">

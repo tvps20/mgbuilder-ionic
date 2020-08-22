@@ -80,7 +80,7 @@ export class CardRefService extends BdBaseCrudService<CardRefDTO> {
                     if (cardRef.collection) {
                         select.push(CardRefType.COLLECTION);
                     }
-                    if (cardRef.favorites) {
+                    if (cardRef.favorite) {
                         select.push(CardRefType.FAVORITE);
                     }
                     if (cardRef.wantList) {
@@ -102,7 +102,7 @@ export class CardRefService extends BdBaseCrudService<CardRefDTO> {
     public parseToEntity(form: FormGroup, card: CardDTO): CardRefDTO {
         let select: string[] = form.get('add').value || [];
         let collection = false;
-        let favorites = false;
+        let favorite = false;
         let wantList = false;
         let decksIds: string = '';
 
@@ -113,7 +113,7 @@ export class CardRefService extends BdBaseCrudService<CardRefDTO> {
                     break;
                 }
                 case (CardRefType.FAVORITE): {
-                    favorites = true;
+                    favorite = true;
                     break;
                 }
                 case (CardRefType.WANTLIST): {
@@ -133,7 +133,7 @@ export class CardRefService extends BdBaseCrudService<CardRefDTO> {
             update_at: new Date(),
             cardId: card.id,
             collection: collection,
-            favorites: favorites,
+            favorite: favorite,
             wantList: wantList,
             decksIds: decksIds
         };

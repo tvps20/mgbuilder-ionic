@@ -4,7 +4,7 @@ export interface CardRefDTO extends BaseDTO {
     
     cardId: string;
     collection: boolean;
-    favorites: boolean;
+    favorite: boolean;
     wantList: boolean;
     decksIds: string;
 }

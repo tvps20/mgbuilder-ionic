@@ -1,24 +1,32 @@
-<div>
+<div style="margin-top: 10px;">
   <div *ngIf="cardsList$ | async as cards; else loadingCards">
     <div *ngIf="cards.length > 0; else noCardsFound">
       <ion-list>
-        <ion-card *ngFor="let card of cards; let i = index" [style]="styleBorderCard(card)" (click)="goToCardDetail(card, i)">
-          <ion-item class="item-background-color">
-            <ion-label class="ion-activatable ripple-parent">
-              <h2>{{ card.name }}</h2>
-              <p>{{ card.type }}</p>
-              <ion-ripple-effect></ion-ripple-effect>
-            </ion-label>
-  
-            <div class="card-right">
-              <p>
-                <i *ngFor="let cor of makeManaCost(card.manaCost)" class="ms ms-{{cor}} ms-cost"></i>
-              </p>
-              <ion-badge *ngIf="card.power && card.toughness" color="primary">{{ card.power }}/{{ card.toughness }}
-              </ion-badge>
-            </div>
-          </ion-item>
-        </ion-card>
+        <div *ngFor="let card of cards; let i = index">
+          <ion-segment>
+              <ion-label *ngIf="verifyCardRef(card)?.collection" class="collection">Collection</ion-label>
+              <ion-label *ngIf="verifyCardRef(card)?.favorite" class="favorite">Favorite</ion-label> 
+              <ion-label *ngIf="verifyCardRef(card)?.wantList" class="wantList">WantList</ion-label>
+          </ion-segment>
+
+          <ion-card [style]="styleBorderCard(card)" (click)="goToCardDetail(card, i)">
+            <ion-item class="item-background-color">
+              <ion-label class="ion-activatable ripple-parent">
+                <h2>{{ card.name }}</h2>
+                <p>{{ card.type }}</p>
+                <ion-ripple-effect></ion-ripple-effect>
+              </ion-label>
+    
+              <div class="card-right">
+                <p>
+                  <i *ngFor="let cor of makeManaCost(card.manaCost)" class="ms ms-{{cor}} ms-cost"></i>
+                </p>
+                <ion-badge *ngIf="card.power && card.toughness" color="primary">{{ card.power }}/{{ card.toughness }}
+                </ion-badge>
+              </div>
+            </ion-item>
+          </ion-card>
+        </div>
       </ion-list>
     </div>
 

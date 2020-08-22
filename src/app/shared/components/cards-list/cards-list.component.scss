@@ -1,3 +1,29 @@
 .card-right {
   text-align: right;
 }
+
+ion-segment {
+  margin: 0px 0px -15px -15px;
+  justify-content: start;
+  flex-direction: row-reverse;
+
+  ion-label {
+    color: white;
+    padding: 6px 10px 8px 10px;
+    margin: 0px 2px 0px 2px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+}
+
+.collection {
+  background-color: #2dd36f;
+}
+
+.favorite {
+  background-color: #eb445a;
+}
+
+.wantList {
+  background-color: #5260ff;
+}
