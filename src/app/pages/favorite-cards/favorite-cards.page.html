@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Favorite Cards</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-cards-list [cardsList$]="favoriteCards$" basePath="./favorite-cards"></app-cards-list>
+</ion-content>

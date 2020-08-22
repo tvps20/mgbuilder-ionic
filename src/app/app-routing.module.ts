@@ -11,8 +11,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sets/sets.module').then( m => m.SetsPageModule)
   },
   {
-    path: 'card-detail',
-    loadChildren: () => import('./pages/card-detail/card-detail.module').then( m => m.CardDetailPageModule)
+    path: 'favorite-cards',
+    loadChildren: () => import('./pages/favorite-cards/favorite-cards.module').then( m => m.FavoriteCardsPageModule)
   }
 ];
 @NgModule({

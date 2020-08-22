@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 const USER_SECTION_ONE = [
-  { name: "Favorite cards", icon: "star-outline", path: '/tabs/tab3' },
+  { name: "Favorite cards", icon: "star-outline", path: '/favorite-cards' },
   { name: "Rules", icon: "help-circle-outline", path: '/tabs/tab3' },
   { name: "Change Password", icon: "key-outline", path: '/tabs/tab3' },
   { name: "Edit profile", icon: "pencil-outline", path: '/tabs/tab3' }

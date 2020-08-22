@@ -1,3 +1,5 @@
+import { FavoriteListService } from './../../services/favorite-list.service';
+import { FavoriteCardsPage } from './../../../pages/favorite-cards/favorite-cards.page';
 import { Observable, Subscription } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
@@ -22,6 +24,7 @@ export class PopoverCardComponent implements OnInit, OnDestroy {
 
   constructor(private formsBuider: FormBuilder,
     private cardRefService: CardRefService,
+    private favoriteService: FavoriteListService,
     private deckService: DeckService) { }
 
   ngOnInit() {
@@ -45,6 +48,7 @@ export class PopoverCardComponent implements OnInit, OnDestroy {
     return this.formulario.get('add').valueChanges.subscribe( success => {
       let cardRef = this.cardRefService.parseToEntity(this.formulario, this.card);
       this.subscriptions$.push(this.cardRefService.saveOrUpdate(cardRef).subscribe());
+      this.subscriptions$.push(this.favoriteService.saveOrRemove(this.card, cardRef.favorite).subscribe());
     });
   }
 }
