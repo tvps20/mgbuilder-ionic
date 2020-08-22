@@ -1,0 +1,52 @@
+<ion-list>
+  <form [formGroup]="formulario">
+    <ion-item button>
+      <ion-icon name="add-circle-outline" item-start></ion-icon>
+
+      <ion-label>&nbsp;&nbsp;add</ion-label>
+
+      <div class="item">
+        <ion-select formControlName="add" [value]="select$ | async" multiple="true" placeholder="Chose" selectedText=" ">
+          <ion-select-option value="Collection">Your Collection</ion-select-option>
+          <ion-select-option value="Favorite">Your Favorits</ion-select-option>
+          <ion-select-option value="WantList">Your WantList</ion-select-option>
+          <ion-select-option *ngFor="let deck of decks$ | async" [value]="deck.id">{{ deck.name }}</ion-select-option>
+        </ion-select>
+      </div>
+
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </form>
+
+  <ion-item button>
+    <ion-icon name="thumbs-up-outline" item-start></ion-icon>
+
+    <ion-label>&nbsp;&nbsp;Card legality</ion-label>
+
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+
+  <ion-item button>
+    <ion-icon name="information-circle-outline" item-start></ion-icon>
+
+    <ion-label>&nbsp;&nbsp;Rulings</ion-label>
+
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+
+  <ion-item button>
+    <ion-icon name="copy-outline" item-start></ion-icon>
+
+    <ion-label>&nbsp;&nbsp;Other card prints</ion-label>
+
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+
+  <ion-item button lines="none">
+    <ion-icon name="share-social-outline" item-start></ion-icon>
+
+    <ion-label>&nbsp;&nbsp;Share</ion-label>
+
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+</ion-list>

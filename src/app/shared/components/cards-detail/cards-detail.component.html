@@ -1,0 +1,60 @@
+
+<ion-slides *ngIf="collection; else noCollection" [options]="slideOpts" (ionSlidePrevStart)="slidePrevStart($event)" (ionSlideTransitionEnd)="slideTransitionEnd($event)">
+  <ion-slide *ngFor="let cardDetail of collection.cards; let i = index">
+    <div class="slide">
+      <ion-card [style]="makeBorderStyle(cardDetail)">
+        <ion-card-header>
+          <ion-item class="item-background-color">
+            <ion-label>
+              <h2>{{ cardDetail.name }}</h2>
+            </ion-label>
+
+            <div class="card-content">
+              <p>
+                <i *ngFor="let cor of makeManaCost(cardDetail.manaCost)" class="ms ms-{{cor}} ms-cost"></i>
+              </p>
+            </div>
+          </ion-item>
+
+          <ion-item class="item-background-color">
+            <ion-label>
+              <p>{{ cardDetail.type }}</p>
+            </ion-label>
+
+            <div class="card-content">
+              <i [class]="setIconClass()"></i>
+            </div>
+          </ion-item>
+        </ion-card-header>
+
+        <ion-card-content class="content-card">
+          <div style="margin-bottom: 10px;">
+            {{ cardDetail.text }}
+          </div>
+
+          <div *ngIf="cardDetail.flavor && cardDetail.flavor !== ''" class="content-flavor">
+            {{ cardDetail.flavor }}
+          </div>
+        </ion-card-content>
+
+        <div class="content-botton">
+          <ion-item class="item-background-color" lines="none">
+            <ion-label>
+              <p>{{ cardDetail.artist }}</p>
+            </ion-label>
+  
+            <ion-badge *ngIf="cardDetail.power && cardDetail.toughness" color="primary">
+              {{ cardDetail.power }}/{{ cardDetail.toughness }}
+            </ion-badge>
+          </ion-item>
+        </div>
+      </ion-card>
+
+      <ion-badge color="medium">{{ i + 1 }}/{{ collection.qtdTotalCards }}</ion-badge>
+    </div>
+  </ion-slide>
+</ion-slides>
+
+<ng-template #noCollection>
+  <app-alert-info msgInfo="No cached collection"></app-alert-info>
+</ng-template>

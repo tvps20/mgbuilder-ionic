@@ -1,0 +1,38 @@
+ion-card {
+  height: 100%;
+  background-color: white;
+  margin-top: -28px;
+}
+
+ion-card-header {
+  margin: auto 0px auto -15px;
+}
+
+.content-card {
+  margin: auto 15px auto 15px;
+}
+
+.content-flavor {
+  font-style: italic;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.content-botton {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  ion-item {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    margin: auto 15px;
+  }
+}
+
+ion-slides {
+  height: 100%;
+}
+
+.slide {
+  height: 90%;
+  width: 100%;
+}

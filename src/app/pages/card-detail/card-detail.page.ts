@@ -1,6 +1,10 @@
-import { ActivatedRoute } from '@angular/router';
-import { CardDTO } from './../../shared/models/card.dto';
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+
+import { CardDTO } from './../../shared/models/card.dto';
+import { CacheService } from './../../shared/services/cache.service';
+import { CollectionDTO } from './../../shared/models/collection.dto';
+import { PopoverCardComponent } from './../../shared/components/popover-card/popover-card.component';
 
 @Component({
   selector: 'app-card-detail',
@@ -9,13 +13,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardDetailPage implements OnInit {
 
-  private card: CardDTO;
+  public collection: CollectionDTO;
+  public toolbarTitle: string;
+  public cardIndex: number = 0;
+  private cardSelected: CardDTO;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private cacheService: CacheService,
+    public popoverController: PopoverController) { }
 
   ngOnInit() {
-    this.card = this.route.snapshot.data['card'];
-    console.log(this.card);
+    this.collection = this.cacheService.selectedCollection;
+    this.cardSelected = this.cacheService.selectedCardDetail;
+    this.cardIndex = this.cacheService.selectedCardIndex;
+    this.toolbarTitle = this.cacheService.selectedCardDetail?.setName || 'No collection';
   }
 
+  async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: PopoverCardComponent,
+      componentProps: { card: this.cardSelected },
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
+  }
+
+  changeCard(card){
+    this.cardSelected = card;
+  }
 }
