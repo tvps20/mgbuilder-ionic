@@ -1,10 +1,11 @@
-import { CacheService } from './../../shared/services/cache.service';
-import { SetDTO } from './../../shared/models/set.dto';
-import { CollectionDTO } from './../../shared/models/collection.dto';
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { CardDTO } from './../../shared/models/card.dto';
 import { Component, OnInit } from '@angular/core';
+
+import { SetDTO } from './../../shared/models/set.dto';
+import { CardDTO } from './../../shared/models/card.dto';
+import { CollectionDTO } from './../../shared/models/collection.dto';
+import { CacheService } from './../../shared/services/cache.service';
 
 @Component({
   selector: 'app-favorite-cards',
@@ -15,8 +16,6 @@ export class FavoriteCardsPage implements OnInit {
 
   public favoriteCards$: Observable<CardDTO[]>;
   private favoriteCards: CardDTO[];
-  private changeContent = false;
-  
 
   constructor(private route: ActivatedRoute,
     private cacheService: CacheService) { }
@@ -27,7 +26,6 @@ export class FavoriteCardsPage implements OnInit {
   }
 
   ionViewWillEnter(event) {
-    this.changeContent = !this.changeContent;
     this.loadFavorites();
   }
 
