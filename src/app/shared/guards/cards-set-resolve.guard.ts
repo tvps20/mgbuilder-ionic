@@ -1,9 +1,9 @@
-import { SetDTO } from './../models/set.dto';
 import { tap, catchError, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve, Router } from '@angular/router';
 import { Observable, empty, of } from 'rxjs';
 
+import { SetDTO } from './../models/set.dto';
 import { CardDTO } from '../models/card.dto';
 import { CollectionDTO } from '../models/collection.dto';
 import { CacheService } from '../services/cache.service';
@@ -30,7 +30,7 @@ export class CardsSetResolveGuard implements Resolve<CardDTO[]> {
           cards: cards,
           qtdTotalCards: this.cacheService.selectedLengthSetCards
         };
-        this.cacheService.saveCollectionApi(collection);
+        this.cacheService.saveOrUpdateCollectionApi(collection);
         this.cacheService.selectedCollection = collection;
       }),
       catchError(error => {

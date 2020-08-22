@@ -1,9 +1,10 @@
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { CardDTO } from './../../models/card.dto';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { UtilService } from './../../services/util.service';
+import { CacheService } from './../../services/cache.service';
 
 @Component({
   selector: 'app-cards-list',
@@ -14,10 +15,10 @@ export class CardsListComponent implements OnInit {
 
   @Input() cardsError$ = new Subject<boolean>();
   @Input() cardsList$: CardDTO[];
-  @Input() initPathRoute: string = "/tabs/tab1";
+  @Input() basePath: string = "./sets";
 
   constructor(private utilService: UtilService,
-    private route: ActivatedRoute,
+    private cacheService: CacheService,
     private router: Router) { }
 
   ngOnInit() { }
@@ -31,6 +32,8 @@ export class CardsListComponent implements OnInit {
   }
 
   public goToCardDetail(card: CardDTO, index: number) {
-    this.router.navigate([`sets/${card.set}/cards`, card.id]);
+    this.cacheService.selectedCardDetail = card;
+    this.cacheService.selectedCardIndex = index;
+    this.router.navigate([`${this.basePath}/${card.set}/cards`, card.id]);
   }
 }

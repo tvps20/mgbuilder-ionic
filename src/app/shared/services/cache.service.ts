@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { SetDTO } from './../models/set.dto';
+import { CardDTO } from './../models/card.dto';
 import { CollectionDTO } from './../models/collection.dto';
 
 @Injectable({
@@ -15,6 +16,8 @@ export class CacheService {
     public selectedSet: SetDTO;
     public selectedLengthSetCards: number = 0;
     public selectedCollection: CollectionDTO;
+    public selectedCardDetail: CardDTO;
+    public selectedCardIndex: number;
 
     public findCollectionApiByCode(code: string) {
         let collection = this.collectionsApi.filter(x => x.set.code === code);
@@ -25,7 +28,13 @@ export class CacheService {
         return null;
     }
 
-    public saveCollectionApi(collection: CollectionDTO) {
+    public saveOrUpdateCollectionApi(collection: CollectionDTO) {
+        let collectionBd = this.collectionsApi.findIndex(x => x.set.code === collection.set.code);
+
+        if(collectionBd){
+            this.collectionsApi[collectionBd] = collection;
+        }
+
         return this.collectionsApi.push(collection);
     }
 }

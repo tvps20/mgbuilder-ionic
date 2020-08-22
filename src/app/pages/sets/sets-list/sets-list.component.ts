@@ -1,10 +1,10 @@
-import { CacheService } from './../../../shared/services/cache.service';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { SetDTO } from '../../../shared/models/set.dto';
 import { UtilService } from '../../../shared/services/util.service';
+import { CacheService } from './../../../shared/services/cache.service';
 
 @Component({
   selector: 'app-sets-list',

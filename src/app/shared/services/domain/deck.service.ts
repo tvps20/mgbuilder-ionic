@@ -1,10 +1,10 @@
-import { switchMap } from 'rxjs/operators';
-import { DeckDTO } from './../../models/deck.dto';
-import { Injectable } from '@angular/core';
-
-import { BdBaseCrudService } from '../../util/bd-base-crud'
-import { Observable, of } from 'rxjs';
 import { Storage } from '@ionic/storage';
+import { switchMap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
+import { DeckDTO } from './../../models/deck.dto';
+import { BdBaseCrudService } from '../../util/bd-base-crud'
 
 
 @Injectable({

@@ -1,4 +1,3 @@
-import { CacheService } from './../shared/services/cache.service';
 import { Subject, empty, Observable, of } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
@@ -8,6 +7,7 @@ import { DeckDTO } from './../shared/models/deck.dto';
 import { SetService } from './../shared/services/domain/set.service';
 import { DeckService } from './../shared/services/domain/deck.service';
 import { IonContent } from '@ionic/angular';
+import { CacheService } from './../shared/services/cache.service';
 
 @Component({
   selector: 'app-tab1',

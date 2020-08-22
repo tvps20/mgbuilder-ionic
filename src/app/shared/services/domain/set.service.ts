@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { take, map, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { SetDTO } from './../../models/set.dto';
 import { API_CONFIG } from '../../config/api.config';

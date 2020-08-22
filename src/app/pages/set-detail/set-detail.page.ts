@@ -1,12 +1,13 @@
-import { PageService } from './../../shared/services/page.service';
-import { CardService } from './../../shared/services/domain/card.service';
 import { FormGroup } from '@angular/forms';
 import { IonContent } from '@ionic/angular';
 import { Observable, of, Subscription } from 'rxjs';
-import { CardDTO } from './../../shared/models/card.dto';
-import { CacheService } from './../../shared/services/cache.service';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { CardDTO } from './../../shared/models/card.dto';
+import { CardService } from './../../shared/services/domain/card.service';
+import { PageService } from './../../shared/services/page.service';
+import { CacheService } from './../../shared/services/cache.service';
 
 @Component({
   selector: 'app-set-detail',
