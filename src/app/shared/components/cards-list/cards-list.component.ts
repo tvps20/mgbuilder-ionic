@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { CardDTO } from './../../models/card.dto';
 import { Component, OnInit, Input } from '@angular/core';
 
+import { CardDTO } from './../../models/card.dto';
 import { UtilService } from './../../services/util.service';
 import { CacheService } from './../../services/cache.service';
 

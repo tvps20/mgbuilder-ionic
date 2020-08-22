@@ -34,7 +34,7 @@ export class CardService extends ApiBaseCrudService<CardDTO> {
 
     public findById(id: string): Observable<CardDTO> {
         return this.http.get<any>(`${API_CONFIG.baseUrl}/cards/${id}`).pipe(
-            map((dados: any) => dados.cards[0])
+            map((dados: any) => dados.card)
         );
     }
 }

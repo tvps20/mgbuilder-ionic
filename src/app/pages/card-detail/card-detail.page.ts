@@ -1,3 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
+import { CardDTO } from './../../shared/models/card.dto';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardDetailPage implements OnInit {
 
-  constructor() { }
+  private card: CardDTO;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.card = this.route.snapshot.data['card'];
+    console.log(this.card);
   }
 
 }
