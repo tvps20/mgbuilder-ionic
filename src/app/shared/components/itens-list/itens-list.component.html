@@ -1,3 +1,39 @@
-<p>
-  itens-list works!
-</p>
+<div>
+  <div *ngIf="itensList$ | async as itens; else loadingItens">
+    <div *ngIf="itens.length > 0; else noItensFound">
+      <ion-list>
+        <ion-card *ngFor="let item of itens; let i = index" [style]="makeBorderStyle(item.card)"
+          (click)="goToCardDetail(item.card, i)">
+          <ion-item class="item-background-color">
+            <div class="count-card">
+              <ion-button color="success">{{item.qtd}}x</ion-button>
+            </div>
+    
+            <ion-label class="ion-activatable ripple-parent">
+              <h2>{{ item.card.name }}</h2>
+              <p>{{ item.card.type }}</p>
+              <ion-ripple-effect></ion-ripple-effect>
+            </ion-label>
+    
+            <div class="card-right">
+              <p>
+                <i *ngFor="let cor of makeManaCost(item.card.manaCost)" class="ms ms-{{cor}} ms-cost"></i>
+              </p>
+              <ion-badge *ngIf="item.card.power && item.card.toughness" color="primary">
+                {{ item.card.power }}/{{ item.card.toughness }}
+              </ion-badge>
+            </div>
+          </ion-item>
+        </ion-card>
+      </ion-list>
+    </div>
+
+    <ng-template #noItensFound>
+      <app-alert-info msgInfo="No itens found."></app-alert-info>
+    </ng-template>
+  </div>
+
+  <ng-template #loadingItens>
+    <app-load-error msgLoad="Loading itens..." msgError="Error loading itens!!!" [error$]="itensError$"></app-load-error>
+  </ng-template>
+</div>

@@ -15,10 +15,6 @@ export class FavoriteListService extends BdBaseCrudService<CardDTO> {
         super(storage, 'favorites')
     }
 
-    public findAll(): Observable<CardDTO[]> {
-        return this.getStorage();
-    }
-
     public saveOrRemove(obj: CardDTO, insert: boolean): Observable<any> {
         return this.getStorage().pipe(
             switchMap((cardsBd: CardDTO[]) => {

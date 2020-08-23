@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Observable, empty, from, of } from 'rxjs';
-import { map, switchMap, mapTo } from 'rxjs/operators';
+import { map, switchMap, mapTo, tap } from 'rxjs/operators';
 
 import { CardDTO } from './../models/card.dto';
 import { CollectionDTO } from './../models/collection.dto';
@@ -17,7 +17,7 @@ export class CollectionListService {
     constructor(protected storage: Storage,
         private cacheService: CacheService) { }
 
-    private getStorage() {
+    private getStorage(): Observable<CollectionDTO[]> {
         const newKey = ((collections: CollectionDTO[]) => from(this.storage.set(this.storageKey, collections)).pipe(
             mapTo(collections)
         ));
@@ -28,6 +28,10 @@ export class CollectionListService {
                 return collectionsStorage ? of(collectionsStorage) : newKey(collections);
             })
         );
+    }
+
+    public findAll() {
+        return this.getStorage().pipe(tap(console.log));
     }
 
     public findBySetCode(setId: string): Observable<CollectionDTO> {

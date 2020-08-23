@@ -1,7 +1,8 @@
+import { Observable, Subject } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
+
 import { CardItemDTO } from './../../../shared/models/card-item.dto';
 import { CollectionDTO } from './../../../shared/models/collection.dto';
-import { Observable } from 'rxjs';
-import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-collection-container',
@@ -11,7 +12,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CollectionContainerComponent implements OnInit {
 
   @Input() collections$: Observable<CollectionDTO[]>;
+  @Input() collectionError$ = new Subject<boolean>();
   @Input() wantList$: Observable<CardItemDTO[]>;
+  @Input() wantError$ = new Subject<boolean>();
   public segmentAtivo: string = 'sets';
 
   constructor() { }

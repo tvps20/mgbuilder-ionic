@@ -13,11 +13,11 @@
 
   <!-- Segmento 1 -->
   <div *ngIf="segmentAtivo === 'sets'">
-    <app-collection-list></app-collection-list>
+    <app-collection-list [collectionsList$]="collections$" [collectionError$]="collectionError$"></app-collection-list>
   </div>
 
   <!-- Segmento 2 -->
   <div *ngIf="segmentAtivo === 'want'">
-    <app-itens-list></app-itens-list>
+    <app-itens-list [itensList$]="wantList$" [itensError$]="wantError$"></app-itens-list>
   </div>
 </div>

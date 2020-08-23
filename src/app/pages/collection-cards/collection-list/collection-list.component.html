@@ -1,3 +1,29 @@
-<p>
-  collection-list works!
-</p>
+<div>
+  <div *ngIf="collectionsList$ | async as collections; else loadingCollections">
+    <div *ngIf="collections.length > 0; else noCollectionsFound">
+      <ion-list>
+        <ion-card *ngFor="let collection of collections" [style]="makeBorderStyle()">
+          <ion-item class="item-background-color" (click)="goToSetDetail(collection)">
+            <ion-label class="ion-activatable ripple-parent">
+              <h2>{{ collection.set.name }}</h2>
+              <p>Code: {{ collection.set.code }}</p>
+              <ion-badge color="primary">Cards: {{ collection.cardsItens.length }}/{{ collection.qtdTotalCards }}
+              </ion-badge>
+              <ion-ripple-effect></ion-ripple-effect>
+            </ion-label>
+      
+            <i [class]="setIconClass(collection.set)"></i>
+          </ion-item>
+        </ion-card>
+      </ion-list>
+    </div>
+
+    <ng-template #noCollectionsFound>
+      <app-alert-info msgInfo="No collections found."></app-alert-info>
+    </ng-template>
+  </div>
+
+  <ng-template #loadingCollections>
+    <app-load-error msgLoad="Loading collections..." msgError="Error loading collections!!!" [error$]="collectionError$"></app-load-error>
+  </ng-template>
+</div>

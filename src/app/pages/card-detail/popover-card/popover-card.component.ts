@@ -1,3 +1,5 @@
+import { CollectionListService } from './../../../shared/services/collection-list.service';
+import { WantListService } from './../../../shared/services/want-list.service';
 import { FavoriteListService } from '../../../shared/services/favorite-list.service';
 import { FavoriteCardsPage } from '../../favorite-cards/favorite-cards.page';
 import { Observable, Subscription } from 'rxjs';
@@ -25,7 +27,9 @@ export class PopoverCardComponent implements OnInit, OnDestroy {
   constructor(private formsBuider: FormBuilder,
     private cardRefService: CardRefService,
     private favoriteService: FavoriteListService,
-    private deckService: DeckService) { }
+    private deckService: DeckService,
+    private wantListService: WantListService,
+    private collectionService: CollectionListService) { }
 
   ngOnInit() {
     this.formulario = this.createForm();
@@ -49,6 +53,8 @@ export class PopoverCardComponent implements OnInit, OnDestroy {
       let cardRef = this.cardRefService.parseToEntity(this.formulario, this.card);
       this.subscriptions$.push(this.cardRefService.saveOrUpdate(cardRef).subscribe());
       this.subscriptions$.push(this.favoriteService.saveOrRemove(this.card, cardRef.favorite).subscribe());
+      this.subscriptions$.push(this.wantListService.saveOrRemove({card: this.card, qtd: 1}, cardRef.wantList).subscribe());
+      this.subscriptions$.push(this.collectionService.saveOrRemove(this.card, cardRef.collection).subscribe());
     });
   }
 }
