@@ -3,7 +3,6 @@ import { IonSlides } from '@ionic/angular';
 
 import { CardDTO } from './../../models/card.dto';
 import { UtilService } from './../../services/util.service';
-import { CacheService } from './../../services/cache.service';
 import { CollectionDTO } from './../../models/collection.dto';
 
 @Component({
@@ -14,7 +13,7 @@ import { CollectionDTO } from './../../models/collection.dto';
 export class CardsDetailComponent implements OnInit {
 
   @ViewChild(IonSlides, { static: false }) slides: IonSlides;
-  @Output() changeCard: EventEmitter<CardDTO> = new EventEmitter<CardDTO>();
+  @Output() onChangeCard: EventEmitter<CardDTO> = new EventEmitter<CardDTO>();
   @Input() collection: CollectionDTO;
   @Input() initIndex: number = 0;
   public slideOpts: any;
@@ -29,14 +28,14 @@ export class CardsDetailComponent implements OnInit {
   slidePrevStart(event) {
     this.slides.getActiveIndex().then(index => {
       this.cardSelected = this.collection.cards[index];
-      this.changeCard.emit(this.cardSelected);
+      this.onChangeCard.emit(this.cardSelected);
     });
   }
 
   slideTransitionEnd(event) {
     this.slides.getActiveIndex().then(index => {
       this.cardSelected = this.collection.cards[index];
-      this.changeCard.emit(this.cardSelected);
+      this.onChangeCard.emit(this.cardSelected);
     });
   }
 

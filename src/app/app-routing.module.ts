@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'favorite-cards',
     loadChildren: () => import('./pages/favorite-cards/favorite-cards.module').then( m => m.FavoriteCardsPageModule)
+  },
+  {
+    path: 'collection-cards',
+    loadChildren: () => import('./pages/collection-cards/collection-cards.module').then( m => m.CollectionCardsPageModule)
   }
 ];
 @NgModule({

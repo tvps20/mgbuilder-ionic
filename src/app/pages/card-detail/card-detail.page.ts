@@ -39,7 +39,7 @@ export class CardDetailPage implements OnInit {
     return await popover.present();
   }
 
-  changeCard(card){
+  onchangeCardHandle(card){
     this.cardSelected = card;
   }
 }

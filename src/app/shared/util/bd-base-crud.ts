@@ -23,7 +23,9 @@ export abstract class BdBaseCrudService<T> {
         );
     }
 
-    public abstract findAll(): Observable<T[]>;
+    public findAll(): Observable<T[]> {
+        return this.getStorage();
+    }
 
     public abstract saveOrRemove(obj: T, insert: boolean): Observable<any>;
 }

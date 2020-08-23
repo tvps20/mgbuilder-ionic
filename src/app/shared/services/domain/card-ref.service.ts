@@ -19,10 +19,6 @@ export class CardRefService extends BdBaseCrudService<CardRefDTO> {
         super(storage, 'cardsRef')
     }
 
-    public findAll(): Observable<CardRefDTO[]> {
-        return this.getStorage();
-    }
-
     public saveOrRemove(obj: CardRefDTO, insert: boolean = true): Observable<any> {
         return this.getStorage().pipe(
             switchMap((cardsBd: CardRefDTO[]) => {

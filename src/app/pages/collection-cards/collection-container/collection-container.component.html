@@ -1,0 +1,23 @@
+<div>
+  <div class="collections-nav">
+    <ion-segment (ionChange)="onSegmentChanged($event)" value="sets">
+      <ion-segment-button value="sets">
+        <ion-label>List of sets</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="want">
+        <ion-label>Wantlist</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- Segmento 1 -->
+  <div *ngIf="segmentAtivo === 'sets'">
+    <app-collection-list></app-collection-list>
+  </div>
+
+  <!-- Segmento 2 -->
+  <div *ngIf="segmentAtivo === 'want'">
+    <app-itens-list></app-itens-list>
+  </div>
+</div>
