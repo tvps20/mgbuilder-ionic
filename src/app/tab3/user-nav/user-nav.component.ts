@@ -9,6 +9,6 @@ export class UserNavComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

@@ -42,11 +42,11 @@ export class SetsPage implements OnInit, OnDestroy {
     this.subscription$.unsubscribe();
   }
 
-  scrollToTop() {
+  public scrollToTop() {
     this.content.scrollToTop(300);
   }
 
-  doRefresh(event) {
+  public doRefresh(event) {
     this.sets$ = this.setService.findAll().pipe(
       map(sets => sets.slice(0, this.pageSize)),
       tap(sets => {
@@ -62,7 +62,7 @@ export class SetsPage implements OnInit, OnDestroy {
     );
   }
 
-  logScrolling(event: CustomEvent) {
+  public logScrolling(event: CustomEvent) {
     if (event.detail.scrollTop > 250) {
       this.topButtonEnable = true;
     } else {
@@ -70,7 +70,7 @@ export class SetsPage implements OnInit, OnDestroy {
     }
   }
 
-  loadData(event) {
+  public loadData(event) {
     this.page++;
 
     this.sets$ = of(this.localSets).pipe(

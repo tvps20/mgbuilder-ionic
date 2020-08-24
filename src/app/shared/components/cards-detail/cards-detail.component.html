@@ -1,5 +1,5 @@
-
-<ion-slides *ngIf="collection; else noCollection" [options]="slideOpts" (ionSlidePrevStart)="slidePrevStart($event)" (ionSlideTransitionEnd)="slideTransitionEnd($event)">
+<ion-slides *ngIf="collection; else noCollection" [options]="slideOpts" (ionSlidePrevStart)="slidePrevStart($event)"
+  (ionSlideTransitionEnd)="slideTransitionEnd($event)">
   <ion-slide *ngFor="let cardDetail of collection.cards; let i = index">
     <div class="slide">
       <ion-card [style]="makeBorderStyle(cardDetail)">
@@ -42,7 +42,7 @@
             <ion-label>
               <p>{{ cardDetail.artist }}</p>
             </ion-label>
-  
+
             <ion-badge *ngIf="cardDetail.power && cardDetail.toughness" color="primary">
               {{ cardDetail.power }}/{{ cardDetail.toughness }}
             </ion-badge>

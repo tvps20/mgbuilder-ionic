@@ -11,7 +11,7 @@
               </ion-badge>
               <ion-ripple-effect></ion-ripple-effect>
             </ion-label>
-      
+
             <i [class]="setIconClass(collection.set)"></i>
           </ion-item>
         </ion-card>
@@ -24,6 +24,7 @@
   </div>
 
   <ng-template #loadingCollections>
-    <app-load-error msgLoad="Loading collections..." msgError="Error loading collections!!!" [error$]="collectionError$"></app-load-error>
+    <app-load-error msgLoad="Loading collections..." msgError="Error loading collections!!!"
+      [error$]="collectionError$"></app-load-error>
   </ng-template>
 </div>

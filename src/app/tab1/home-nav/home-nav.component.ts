@@ -20,13 +20,13 @@ export class HomeNavComponent implements OnInit {
     private cacheService: CacheService,
     private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  setIconClass(set: SetDTO){
+  public setIconClass(set: SetDTO) {
     return this.utilService.setIconClass(set.code);
   }
 
-  goToSetDetail(set: SetDTO){
+  public goToSetDetail(set: SetDTO) {
     this.cacheService.selectedSet = set;
     this.router.navigate([`./sets/${set.code}/cards`]);
   }

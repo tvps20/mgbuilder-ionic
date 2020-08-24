@@ -25,30 +25,30 @@ export class CardsDetailComponent implements OnInit {
     this.slideOpts = this.slideOptions();
   }
 
-  slidePrevStart(event) {
+  public slidePrevStart(event) {
     this.slides.getActiveIndex().then(index => {
       this.cardSelected = this.collection.cards[index];
       this.onChangeCard.emit(this.cardSelected);
     });
   }
 
-  slideTransitionEnd(event) {
+  public slideTransitionEnd(event) {
     this.slides.getActiveIndex().then(index => {
       this.cardSelected = this.collection.cards[index];
       this.onChangeCard.emit(this.cardSelected);
     });
   }
 
-  makeBorderStyle(card: CardDTO) {
+  public makeBorderStyle(card: CardDTO) {
     let bordStyle = this.utilService.cardBorderStyle(card);
     return bordStyle.replace('left', 'top')
   }
 
-  makeManaCost(manaCost: string) {
+  public makeManaCost(manaCost: string) {
     return this.utilService.makeManaCost(manaCost);
   }
 
-  setIconClass() {
+  public setIconClass() {
     return this.utilService.setIconClass(this.collection.set.code);
   }
 

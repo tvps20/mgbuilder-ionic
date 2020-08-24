@@ -31,7 +31,7 @@ export class CacheService {
     public saveOrUpdateCollectionApi(collection: CollectionDTO) {
         let collectionBd = this.collectionsApi.findIndex(x => x.set.code === collection.set.code);
 
-        if(collectionBd){
+        if (collectionBd) {
             this.collectionsApi[collectionBd] = collection;
         }
 

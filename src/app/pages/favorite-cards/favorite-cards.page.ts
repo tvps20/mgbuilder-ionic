@@ -29,13 +29,13 @@ export class FavoriteCardsPage implements OnInit {
     this.loadFavorites();
   }
 
-  private loadFavorites(){
+  private loadFavorites() {
     this.favoriteCards = this.route.snapshot.data['favorites'];
     this.favoriteCards$ = of(this.favoriteCards);
   }
 
-  private createCollection(): CollectionDTO{
-    let set: SetDTO = {name: 'Favorite', code: 'Favorite', block: 'Favorite', booster: [], onlineOnly: false, releaseDate: new Date(), type: 'Favorite' }
-    return {set: set, cards: this.favoriteCards, qtdTotalCards: this.favoriteCards.length }
+  private createCollection(): CollectionDTO {
+    let set: SetDTO = { name: 'Favorite', code: 'Favorite', block: 'Favorite', booster: [], onlineOnly: false, releaseDate: new Date(), type: 'Favorite' }
+    return { set: set, cards: this.favoriteCards, qtdTotalCards: this.favoriteCards.length }
   }
 }

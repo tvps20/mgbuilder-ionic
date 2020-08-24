@@ -54,11 +54,11 @@ export class SetDetailPage implements OnInit, OnDestroy {
     this.subscriptions$.push(this.loadCardsRef());
   }
 
-  scrollToTop() {
+  public scrollToTop() {
     this.content.scrollToTop(300);
   }
 
-  logScrolling(event: CustomEvent) {
+  public logScrolling(event: CustomEvent) {
     if (event.detail.scrollTop > 250) {
       this.topButtonEnable = true;
     } else {
@@ -66,11 +66,11 @@ export class SetDetailPage implements OnInit, OnDestroy {
     }
   }
 
-  doRefresh(event) {
+  public doRefresh(event) {
     const inscription = this.cardService.findAllBySet(this.code, 1).subscribe(
       success => {
         event.target.complete();
-        if (this.localCards.length < this.cardsFullLength) { 
+        if (this.localCards.length < this.cardsFullLength) {
           this.page = 1;
           this.localCards = success;
           this.cards$ = of(this.localCards);
@@ -85,7 +85,7 @@ export class SetDetailPage implements OnInit, OnDestroy {
     this.subscriptions$.push(inscription);
   }
 
-  loadData(event) {
+  public loadData(event) {
     this.page++;
     const inscription = this.cardService.findAllBySet(this.code, this.page).subscribe(
       success => {

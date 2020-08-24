@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 
 export abstract class BdBaseCrudService<T> {
 
-    // TODO: Verificar o construtor ao implementar
     constructor(protected storage: Storage,
         protected storageKey: string) {
         this.storageKey = storageKey;

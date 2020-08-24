@@ -17,7 +17,7 @@ export class ItensListComponent implements OnInit {
 
   constructor(private utilService: UtilService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public makeBorderStyle(card: CardDTO) {
     return this.utilService.cardBorderStyle(card);

@@ -28,7 +28,7 @@ export class CardDetailPage implements OnInit {
     this.toolbarTitle = this.cacheService.selectedCardDetail?.setName || 'No collection';
   }
 
-  async presentPopover(ev: any) {
+  public async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
       component: PopoverCardComponent,
       componentProps: { card: this.cardSelected },
@@ -39,7 +39,7 @@ export class CardDetailPage implements OnInit {
     return await popover.present();
   }
 
-  onchangeCardHandle(card){
+  public onchangeCardHandle(card) {
     this.cardSelected = card;
   }
 }

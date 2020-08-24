@@ -32,11 +32,11 @@ export class Tab1Page implements OnInit {
     this.decks$ = this.loadDecks();
   }
 
-  scrollToTop() {
+  public scrollToTop() {
     this.content.scrollToTop(300);
   }
 
-  logScrolling(event: CustomEvent) {
+  public logScrolling(event: CustomEvent) {
     if (event.detail.scrollTop > 250) {
       this.topButtonEnable = true;
     } else {
@@ -45,7 +45,7 @@ export class Tab1Page implements OnInit {
   }
 
   private loadTop10Sets() {
-    if(this.cacheService.setsApi.length > 0){
+    if (this.cacheService.setsApi.length > 0) {
       return of(this.cacheService.setsApi).pipe(
         map(sets => sets.slice(0, 10))
       );

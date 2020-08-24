@@ -4,13 +4,13 @@
       <ion-list-header>
         Your list decks
       </ion-list-header>
-  
+
       <ion-card *ngFor="let deck of decks" [style]="styleBorderDeck(deck)">
         <ion-item class="item-background-color">
           <ion-avatar slot="start">
             <img src="../../../assets/img/img-deck-default.png">
           </ion-avatar>
-  
+
           <ion-label class="ion-activatable ripple-parent">
             <h2>{{ deck.name }}</h2>
             <h3>{{ deck.format }}</h3>
@@ -19,7 +19,7 @@
             </p>
             <ion-ripple-effect></ion-ripple-effect>
           </ion-label>
-  
+
           <ion-icon [color]="deck.favorite ? 'danger' : ''" [name]="deck.favorite ? 'heart' : 'heart-outline'"
             (click)="setFavoriteDeck(deck)"></ion-icon>
         </ion-item>
@@ -32,6 +32,7 @@
   </div>
 
   <ng-template #loadingDecks>
-    <app-load-error msgLoad="Loading decks..." msgError="Error loading decks!!!" [error$]="decksError$"></app-load-error>
+    <app-load-error msgLoad="Loading decks..." msgError="Error loading decks!!!" [error$]="decksError$">
+    </app-load-error>
   </ng-template>
 </div>

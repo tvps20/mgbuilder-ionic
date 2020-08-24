@@ -4,9 +4,9 @@
       <ion-list>
         <div *ngFor="let card of cards; let i = index">
           <ion-segment>
-              <ion-label *ngIf="verifyCardRef(card)?.collection" class="collection">Collection</ion-label>
-              <ion-label *ngIf="verifyCardRef(card)?.favorite" class="favorite">Favorite</ion-label> 
-              <ion-label *ngIf="verifyCardRef(card)?.wantList" class="wantList">WantList</ion-label>
+            <ion-label *ngIf="verifyCardRef(card)?.collection" class="collection">Collection</ion-label>
+            <ion-label *ngIf="verifyCardRef(card)?.favorite" class="favorite">Favorite</ion-label>
+            <ion-label *ngIf="verifyCardRef(card)?.wantList" class="wantList">WantList</ion-label>
           </ion-segment>
 
           <ion-card [style]="styleBorderCard(card)" (click)="goToCardDetail(card, i)">
@@ -16,7 +16,7 @@
                 <p>{{ card.type }}</p>
                 <ion-ripple-effect></ion-ripple-effect>
               </ion-label>
-    
+
               <div class="card-right">
                 <p>
                   <i *ngFor="let cor of makeManaCost(card.manaCost)" class="ms ms-{{cor}} ms-cost"></i>
@@ -36,6 +36,7 @@
   </div>
 
   <ng-template #loadingCards>
-    <app-load-error msgLoad="Loading cards..." msgError="Error loading cards!!!" [error$]="cardsError$"></app-load-error>
+    <app-load-error msgLoad="Loading cards..." msgError="Error loading cards!!!" [error$]="cardsError$">
+    </app-load-error>
   </ng-template>
 </div>

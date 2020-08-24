@@ -27,7 +27,7 @@ export class CollectionCardsPage implements OnInit {
     this.wantList$ = this.loadWantList();
   }
 
-  private loadCollection(){
+  private loadCollection() {
     return this.collectionService.findAll().pipe(
       catchError(error => {
         this.collectionError$.next(true);
@@ -36,7 +36,7 @@ export class CollectionCardsPage implements OnInit {
     );
   }
 
-  private loadWantList(){
+  private loadWantList() {
     return this.wantListService.findAll().pipe(
       catchError(error => {
         this.wantError$.next(true);

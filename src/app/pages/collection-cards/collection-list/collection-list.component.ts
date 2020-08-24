@@ -18,7 +18,7 @@ export class CollectionListComponent implements OnInit {
 
   constructor(private utilService: UtilService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public setIconClass(set: SetDTO) {
     return this.utilService.setIconClass(set.code);
@@ -28,7 +28,7 @@ export class CollectionListComponent implements OnInit {
     return this.utilService.cardBorderStyle();
   }
 
-  public goToSetDetail(collection: CollectionDTO){
+  public goToSetDetail(collection: CollectionDTO) {
     console.log("set detalhes")
   }
 }

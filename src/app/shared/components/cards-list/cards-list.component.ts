@@ -26,17 +26,17 @@ export class CardsListComponent implements OnInit {
   ngOnInit() { }
 
 
-  styleBorderCard(card: CardDTO) {
+  public styleBorderCard(card: CardDTO) {
     return this.utilService.cardBorderStyle(card);
   }
 
-  makeManaCost(manaCost: string) {
+  public makeManaCost(manaCost: string) {
     return this.utilService.makeManaCost(manaCost);
   }
 
-  verifyCardRef(card: CardDTO) {
+  public verifyCardRef(card: CardDTO) {
     let index = this.cardsRef.findIndex(x => x.cardId === card.id);
-    
+
     if (index != -1) {
       return this.cardsRef[index];
     }
@@ -44,7 +44,7 @@ export class CardsListComponent implements OnInit {
     return null;
   }
 
-  goToCardDetail(card: CardDTO, index: number) {
+  public goToCardDetail(card: CardDTO, index: number) {
     this.cacheService.selectedCardDetail = card;
     this.cacheService.selectedCardIndex = index;
     this.router.navigate([`${this.basePath}/${card.set}/cards`, card.id]);

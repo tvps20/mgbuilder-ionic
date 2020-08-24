@@ -1,10 +1,10 @@
-import { PageService } from './../services/page.service';
 import { switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { CardDTO } from './../../shared/models/card.dto';
+import { PageService } from './../services/page.service';
 import { FavoriteListService } from '../services/favorite-list.service';
 
 @Injectable({

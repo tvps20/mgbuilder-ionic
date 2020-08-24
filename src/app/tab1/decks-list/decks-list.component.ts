@@ -18,11 +18,11 @@ export class DecksListComponent implements OnInit {
 
   ngOnInit() { }
 
-  styleBorderDeck(){
+  public styleBorderDeck() {
     return this.utilService.cardBorderStyle();
   }
 
-  setFavoriteDeck(deck: DeckDTO){
+  public setFavoriteDeck(deck: DeckDTO) {
     deck.favorite = !deck.favorite;
   }
 }
