@@ -1,5 +1,6 @@
+import { PopoverController } from '@ionic/angular';
 import { AwsService } from './../../shared/services/aws.service';
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-popover-user',
@@ -9,21 +10,28 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class PopoverUserComponent implements OnInit {
 
   @Input() picture: string;
-  @Output() onUpdateImg: EventEmitter<string> = new EventEmitter<string>();
+  @Input() profileImgRef: any;
   public submitImg: boolean = false;
 
-  constructor(private awsService: AwsService) { }
+  constructor(private awsService: AwsService,
+    private popoverController: PopoverController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  public sendImg(){
+  public sendImg() {
     this.submitImg = true;
-    this.awsService.uploadFile(this.picture , "profile-img").then((res:string) => {
+    this.awsService.uploadFile(this.picture, "profile-img").then((res: string) => {
       console.log("response", res);
-      this.onUpdateImg.emit(res);
+      this.profileImgRef.img = "https://mg-builder-ionic.s3-sa-east-1.amazonaws.com/" + res;
+      this.DismissClick();
     }).catch(error => {
       console.log("Error: ", error);
-      this.onUpdateImg.emit("error");
+      // this.cacheService.profileImg = "error";
+      this.DismissClick();
     });
+  }
+
+  private async DismissClick() {
+    await this.popoverController.dismiss();
   }
 }

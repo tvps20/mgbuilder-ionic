@@ -1,3 +1,4 @@
+import { CacheService } from './../../shared/services/cache.service';
 import { PopoverController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -11,22 +12,25 @@ import { PopoverUserComponent } from './../popover-user/popover-user.component';
 })
 export class UserNavComponent implements OnInit {
 
-  public picture: string;
+  public profileImg: { img: string }
+  private picture: string;
 
   constructor(public popoverController: PopoverController,
-    private camera: Camera) { }
+    private camera: Camera) {
+    this.profileImg = { img: "../../../assets/img/img-profile.png" };
+  }
 
   ngOnInit() { }
 
   public async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
       component: PopoverUserComponent,
-      componentProps: { picture: this.picture },
+      componentProps: { picture: this.picture, profileImgRef: this.profileImg },
       cssClass: 'my-popover-class',
       event: ev,
       translucent: true
     });
-    
+
     return await popover.present();
   }
 
@@ -35,7 +39,9 @@ export class UserNavComponent implements OnInit {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      targetHeight: 380,
+      targetWidth: 380
     }
 
     this.camera.getPicture(options).then((imageData) => {
