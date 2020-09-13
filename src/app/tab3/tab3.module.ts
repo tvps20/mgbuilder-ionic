@@ -1,3 +1,4 @@
+import { Camera } from '@ionic-native/camera/ngx';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,7 @@ import { Tab3Page } from './tab3.page';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module'
 import { SettingsListComponent } from './settings-list/settings-list.component';
+import { PopoverUserComponent } from './popover-user/popover-user.component';
 import { UserNavComponent } from './user-nav/user-nav.component';
 
 @NgModule({
@@ -20,7 +22,11 @@ import { UserNavComponent } from './user-nav/user-nav.component';
   declarations: [
     Tab3Page,
     UserNavComponent,
-    SettingsListComponent
+    SettingsListComponent,
+    PopoverUserComponent
+  ],
+  providers: [
+    Camera
   ]
 })
 export class Tab3PageModule {}

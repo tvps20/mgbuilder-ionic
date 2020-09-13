@@ -1,0 +1,5 @@
+run aplication
+ionic serve
+
+run cordova browser
+cordova run --target=chrome --port=8100
